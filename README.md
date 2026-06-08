@@ -20,3 +20,5 @@ The workflow in `.github/workflows/playwright-tests.yml` runs the suite on every
 - installs `requirements.txt`
 - installs Playwright Chromium and required Linux OS packages
 - runs `python -m pytest -q`
+
+## edit
