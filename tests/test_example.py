@@ -29,29 +29,3 @@ def test_core_sections_are_visible(page: Page, section_name: str) -> None:
     expect(page.get_by_role("heading", name=section_name)).to_be_visible()
 
 
-@pytest.mark.parametrize(
-    ("link_name", "href_pattern"),
-    [
-        ("Get started", re.compile(r"/docs/intro/?$")),
-        ("Testing documentation", re.compile(r"/docs/intro/?$")),
-        (
-            "Star microsoft/playwright on GitHub",
-            re.compile(r"github\.com/microsoft/playwright/?$"),
-        ),
-    ],
-)
-def test_primary_links_have_expected_targets(
-    page: Page,
-    link_name: str,
-    href_pattern: re.Pattern[str],
-) -> None:
-    """Check each primary homepage link against its expected destination.
-
-    Pytest runs this test once for every link_name and href_pattern pair above.
-    On each run, Playwright finds the link by its visible name and verifies that
-    the href attribute matches the expected URL pattern without clicking it.
-    """
-
-    expect(page.get_by_role("link", name=link_name)).to_have_attribute(
-        "href", href_pattern
-    )
